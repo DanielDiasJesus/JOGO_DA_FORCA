@@ -27,7 +27,9 @@ M E L A N C I A ------> _ E _ A _ _ I A
 >Caso a letra não exista nessa palavra, desenha-se uma parte do corpo (iniciando pela cabeça, tronco, braços…)
 
 Como no exemplo dessa imagem abaixo
+
 ![regra_forca](https://user-images.githubusercontent.com/43553717/159046745-950b5b94-7c13-4cfa-90ea-f06a7c7db333.gif)
+
 **Nesse projeto, o jogador terá apenas 7 chances de tentar acertar a palavra** (_para deixar o jogo um pouco mais emocionante_ 😏).
 >O jogo é ganho se a palavra é adivinhada. Caso o jogador não descubra qual palavra é ele que perde.
 
