@@ -1,0 +1,17 @@
+Chef
+Caixa
+Diarista
+Cientista
+Eletricista
+Recepcionista
+Jornalista
+Dentista
+Telefonista
+Atendente
+Presidente
+Gerente
+Militar
+Policial
+Youtuber
+Maquinista
+Taxista
