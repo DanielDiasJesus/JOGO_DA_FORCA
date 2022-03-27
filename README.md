@@ -59,9 +59,10 @@ temos que já ter em mente que precisamos das figuras representanda pelo numero 
 _-Lembrando que, para facilitar a programação, cada sprite deve ser salva em arquivos diferentes._
 
 Logo após ter as sprites, é hora de criar uma interface legal para o jogo. Como dito anteriormente, a primícia do design deste projeto foi algo mais rustico, como um jogo desenhado a lapis em um caderno. Nada muito complexo ou imaginado. Como é mostrado nos exemplos abaixo.
-![INTERFACE_JOGO_FORCA_4](https://user-images.githubusercontent.com/43553717/159720175-3bf34692-fda1-40c1-bf49-6014d67ba87b.jpg)   ![INTERFACE_JOGO_FORCA_3](https://user-images.githubusercontent.com/43553717/159079515-7f2011cc-5965-4bcb-a50c-c8b801eb2717.jpg) 
-![INTERFACE_JOGO_FORCA_5](https://user-images.githubusercontent.com/43553717/159725740-0b1e1b17-b285-4c17-87a1-7eb2f51eae02.jpg)
 
+![INTERFACE_JOGO_FORCA_4](https://user-images.githubusercontent.com/43553717/159720175-3bf34692-fda1-40c1-bf49-6014d67ba87b.jpg)   
+![INTERFACE_JOGO_FORCA_3](https://user-images.githubusercontent.com/43553717/159079515-7f2011cc-5965-4bcb-a50c-c8b801eb2717.jpg) 
+![INTERFACE_JOGO_FORCA_5](https://user-images.githubusercontent.com/43553717/159725740-0b1e1b17-b285-4c17-87a1-7eb2f51eae02.jpg)
 
 _- novamente volto a reforçar que a intenção deste artigo não é ensinar a desenvolver o projeto, e sim passar o seu funcionamento a limpo e tornar visual o que para quem for visualizar este repositório sem a necessidade de fuçar pelo repositório._
 
@@ -75,11 +76,13 @@ A programação deste projeto _- como de qualquer outro que envolva programaçã
 
 ##### 📝 Definição de necessidades do código
 Esta etapa diz respeito a todas as propriedades e funcionalidades que serão essenciais para o funcionamento do código, tais como o numero de tentativas do jogador, sua quantidade de acertos, o máximo de tentativas permitidas pelo programa, quantidade de pontos e as localizações das sprites de cada erro do jogador e entre outras. Confira na imagem abaixo como esse projeto define essas necessidades:
+
 ![CODING_DEFINICAO_NECESSIDADE_1](https://user-images.githubusercontent.com/43553717/159718257-01047ebf-e805-44ca-a720-4d0dbf4a3dc4.jpg)
 
 A propriedade mais importante para definir qual sera a ``palavraAtual``, no contexto das regras deste projeto, seria **o tema da palavra esolhida**. No caso deste projeto, **o tema da palavra gerada é definido de acordo com a escolha do usuário na primeira vez que iniciar o jogo** através da interface "ESCOLHA UM TEMA" definida na primeira imagem de exemplo de criação da interface citado anteriormente. Em sumo, o jogador escolhe um tema e este tema será atribuido à variavel ``temaAtual``.
 
 Todas as vezes que o programa inicializar, deve criar um novo jogo com estas mesmas propriedades inicializadas de acordo com as regras. Esta parte da programação deste projeto está definido pela função ``novoJogo()`` conforme a imagem abaixo;
+
 ![CODING_DEFINICAO_NECESSIDADE_2](https://user-images.githubusercontent.com/43553717/160299173-00ed0cb1-4156-492e-8e59-bf98cd216dd0.jpg)
 
 Resumidamente, esta função é responsável por inicializar um novo jogo (indiferente de ser a primeira vez do jogador) e **atribui às propriedades de inicialização definidas na interface e tratadas pelo programa (como é visto nas três primeiras linhas da função) os seus devidos valores**, isso porque essa função é dinâmica e não é chamada somente na inicialização e sim em varios outros momentos no decorrer do programa. Logo após uma nova palavra é gerada através do método ``gerarPalavra()`` e **é atribuida a palavra atual através de uma busca e escolha aleatória em uma das listas de palavras (separadas pelos temas disponíveis) salvos em arquivos de textos diferentes** conforme mostrado na imagem abaixo.
@@ -91,6 +94,7 @@ Outra coisa importante de se mencionar é que de acordo com a lógica da funçã
 
 Continuando com o método ``novoJogo()``, em seguida, a sprite da forca, quantidade de tentativas e acertos é configurada aos seus valores iniciais respectivamente. Abaixo temos o método ``statusButton(boolean)`` que é um método que percorre o contexto atual procurando por botões e os ativando ou desativando de acordo com o parâmetro (``true`` ativa os botões e ``false`` os desativa) _- isso porque toda vez que o jogador escolhe uma letra o botão é desativado sendo necessário reativar todos eles novamente_.
 Logo abaixo temos a parte interessante, é onde trocamos a correspondência das letras da palavra por underlines (de acordo com as regras universais do jogo citadas anteriormente) através do método ``esconderCorrespondencia()``. Para isso, um laço de repetição é criado que será iterado até o final da palavra atual e em cada iteração, é gerado uma nova ``Label`` com o valor do texto representado por um underline (*"_"*) e sua estilização também definida gerando esse resultado final:
+
 ![CODING_DEFINICAO_NECESSIDADE_3](https://user-images.githubusercontent.com/43553717/159340871-ad8a682d-e6be-4f62-96a2-a470dd19d7a6.jpg)
 
 Repare que este método lida com a responsividade das palavras, isso é, caso a palavra for maior que um determinado numero de letra, cada letra tende a diminuir o tamanho da ``Label`` ou da fonte de texto _- que é o caso deste projeto -_ e assim consegue "encaixar" a palavra dentro do painel no qual a letra está localizada. Legal, não é? 🙂
@@ -99,11 +103,14 @@ Repare que este método lida com a responsividade das palavras, isso é, caso a 
 A parte de entrada de dados será **encarregada a capturar todos os dados "crus" podendo ou não serem tratadas inicialmente antes de serem enviadas para a parte responsável pela manipulação** _- quando se tem a separação distinta destas etapas, eu pessoalmente prefiro verificar e tratar os dados antes de se enviar para a parte de processamento pois dessa forma fica bem nítido a função de cada parte._
 
 As entradas de dados deste projeto, como já deve ser claro a este ponto, é representada pelo conjunto dos botões na interface, onde o usuário poderá interagir na intenção de ter um problema solucionado _- claro que essa interação varia de acordo com o contexto do programa -_
+
 ![INTERFACE_ENTRADA_DE_DADOS](https://user-images.githubusercontent.com/43553717/159292007-d6546578-78af-48e4-94f8-5fc8685a6a45.jpg)
+
 Cada botão é objeto com propriedades, métodos e eventos a serem tratados ou utilizados conforme a necessidade do programa e o decorrer da programação. 
 Neste caso, nós estamos interessados em capturar o **evento de clique do botão** (que é representado pela forma do jogador escolher uma possível letra presente na palavra). 
 Também precisamos achar a identidade de cada botão, pois para o programa eles não passam de um conjunto de objetos que são instâncias de uma mesma classe, então **como vamos saber se o usuario clicou no botão equivalente a letra A ou a letra B?** Bom, há varias formas de identificarmos um botão com essa intenção, mas para ficar mais fácil, nesse caso usaremos somente o **texto presente em cada botão** como uma convenção e assim definir a identidade do botão.
 E essa explicação toda é traduzida em código de acordo com a imagem abaixo
+
 ![CODING_ENTRADA_DE_DADOS_1](https://user-images.githubusercontent.com/43553717/160291884-67dc418e-962f-4802-a3c2-0a619887cc5f.jpg)
 
 A primeira linha do código é utilizada somente para atribuir o foco atual para outro contexto fora do botão _- com a simples finalidade de ficar mais bonitinho -_ e, seguindo abaixo, **temos a instância do botão oriunda de object sender vindo do parâmetro da função chamada no evento de clique do objeto** e veja, neste caso não foi necessário nenhuma verificação ou tratamento antes de passar para a etapa de processamento de dados, isso porque esse método será chamado SOMENTE quando algum dos 26 botões (representados pelas letras do alfabeto) for clicado, por ser um método **bem específico** e **dentro de um contexto bem definido e controlado**, não tem a necessidade de fazer verificações, validações ou tratamentos dos dados.
@@ -112,11 +119,14 @@ Logo abaixo da instância temos duas linhas utilizadas para estilização e lóg
 
 ##### 🔨 Processamento e saída de dados
 E é aqui que está presente o coração do projeto. Olhe a imagem abaixo da função `` manipularEscolha() `` chamada na etapa anterior;
+
 ![CODING_PROCESSAMENTO_DE_DADOS_1](https://user-images.githubusercontent.com/43553717/160298731-4bb203e5-5db6-4a2e-8be1-97305fd58465.jpg)
 
 Primeiramente, temos um laço de repetição que, talvez, seja a parte mais importante do processamento de dados. Aqui é onde ocorre a verificação para identificar se a **letra escolhida** pelo jogador está presente na **palavra gerada** _- guardada dentro da variável ``palavraAtual``_. Mas também não há nenhum mistério em seu funcionamento, o laço de repetição percorre toda a palavra e a cada iteração verifica se a letra da vez corresponde a letra esolhida pelo jogador. Caso seja verdadeiro, a variável local ``acertou`` recebe ``true`` _- para, no decorrer do programa. identificar se o laço chegou ao final sem que ele acerte uma letra o que é verificado logo abaixo-_ e, na primeira linha dentro do laço de repetição, há uma atribuição de um caracter ``letraAtual`` provinda da função ``verificarCodificacao()``. 
 Eis o problema: nós, brasileiros, utilizamos um sistema de codificação um pouco diferente do padrão universal (americano) em nosso sitema de comunicação escrita, isto é, nossas palavras são um pouco diferentes das do restante do mundo _-- assim como algumas outras linguas como chinês ou árabe, mas não estamos interessados nelas --_ e por isso devemos nos atentar à estas palavras e trocar à sua correspondente letra. Por exemplo a palavra **MACARRÃO** ela posui um **A** com uma acento til( **~**) gerando a letra **Ã**. E isto é um prolema, pois na nossa interface não colocamos opções de acentuação para o usuário escolher. Então como resolver este problema? É aí que o método ``verificarCodificacao()`` entra. Ele é um método que troca a letra com acentuação pela sua respectiva letra base sem acento... Os caracteres **[Ã, Á, À, Â, ...]** por exemplo, são trocados pelo **A**, assim como os caracteres **[É, È, Ê, ...]** são trocados pelo **E**. Assim como é mostrado na descrição da função abaixo.
+
 ![CODING_PROCESSAMENTO_DE_DADOS_3](https://user-images.githubusercontent.com/43553717/160292968-c69c6fb8-9fa8-42e1-84ec-2d43a3752c09.jpg)
+
 Pronto, até aqui temos tudo em ordem no controle da acentuação 🙂
 
 Agora, voltando com o método ``manipularEscolha()`` a letra retornada do processamento da função ``verificarCodificacao()`` é passada para a verificação na linha imediatamente abaixo comparando com a letra escolhida pelo jogador vinda do parametro ``control`` e, caso a verificação for verdadeira, **é atribuido verdadeiro à variavel local ``acertou``, os acertos são acrescidos e a função ``mostrarLetra()`` é chamada**. 
@@ -137,6 +147,7 @@ E, finalizando o método ``manipularEscolha()``, temos duas verificações finai
 A primeira verificado, através da função ``ganhou()``, é chamada para identificar se a **quantidade de acertos da palavra atual é igual ao tamanho real da palavra atual** _- desta forma, nós conseguimos saber se ele acertou todas as letras presente na palavra -_ e caso seja verdadeiro, a quantidade de pontos é acrescida (conforme solicitados na regra 2) e um novo jogo é chamado através da função ``novoJogo()`` da qual já trabalhamos nos tópicos anteriores. Esta função é chamada sempre que o jogo voltar ao estado inicial sendo elas **na primeira vez que o programa for inicializado**, **quando acertar uma palavra** (conforme solicidado na regra 1) ou **quando o jogador perder o jogo porém deseja jogar novamente** (conforme solicitados na regra 3).
 
 E ultima verificação é chamada para identificar caso o jogador **perdeu o jogo** através da função ``perdeu()`` que verifica **se o numero de tentativas do jogador for igual ao máximo de tentativas permitidas pelo jogo** e caso seja verdadeiro, a função ``fimDeJogo()`` é chamado. A função ``fimDeJogo()`` abre uma **janela personalizada** _- semelhante a de esolha de tema, porém menor e mais controlada quanto à posição -_ é mostrada ao jogador questionando se ele deseja jogar novamente juntamente com a quantidade de pontos que ele adquiriu ao decorrer dos jogos. Confome é visto na imagem abaixo.
+
 ![INTERFACE_JOGO_FORCA_5](https://user-images.githubusercontent.com/43553717/159725740-0b1e1b17-b285-4c17-87a1-7eb2f51eae02.jpg)
 
 E por último, mas não menos importante, temos os dois botões mais chamativos dessa linda interface, a **DICA** e **TROCAR**.
@@ -145,6 +156,7 @@ Primeiramente, vamos abordar a **dica**. Conforme solicitado nas regras, a dica 
 > [...] a quantidade de letras reveladas seja inferior a 3 e que a palavra tenha mais de 4 letras em sua composição.
 
 O primeiro caso, já está tratado na função ``manipularEscolha()`` e o segundo caso também está tratado na função ``statusButton()``. Então o a função ficou conforme a imagem abaixo.
+
 ![CODING_PROCESSAMENTO_DE_DADOS_4](https://user-images.githubusercontent.com/43553717/160299527-1b482160-d9e5-4cad-8ca9-d0723c99f7dd.jpg)
 
 Como pode ver, é gerado um indice aleatório dentro dos limites de ``palavraAtual`` e, enquanto a informação de que não há correspondências disponíveis no contexto onde as ``Label``s estão inseridas, requerida através da função ``letraDisponível()`` o indice gerado anteriormente recebe um novo indice aleatório. 
@@ -158,6 +170,7 @@ E agora só nos resta a **troca de palarva**. A troca de palavra, conforme solic
 > possibilidade de troca de palavra para outra do mesmo tema somente uma vez por rodada e na troca o número de tentativas é subtraído por 2;
 
 E é exatamente isso que a função ``manipularTrocaPalavra()`` descreve na imagem abaixo.
+
 ![CODING_PROCESSAMENTO_DE_DADOS_5](https://user-images.githubusercontent.com/43553717/160300135-b7a97358-3141-45b3-b430-02873a494329.jpg)
 
 Em resumo, a uma nova palavra é gerada e atribuida a variavel ``palavraAtual``, a função ``esconderCorrespondencia()`` é chamada para atualizar, no contexto das ``Label``s, a nova palavra gerada, os botões são novamente ativados _- inclusive a dica pois, sejamos justos, se o jogador pediu alguma dica, foi referente a palavra anterior... Por este motivo, as dicas que ele solicitou anteriormente são inúteis nessa nova palavra -_, os acertos são zerados, a função de erro é iterado duas vezes _- assim subtraindo o número de tentativas por dois-_ e o botão é desativado _- pois o jogador só pode utilizar esse recurso uma vez por rodada._
