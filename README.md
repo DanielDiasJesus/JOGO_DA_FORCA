@@ -83,7 +83,9 @@ Todas as vezes que o programa inicializar, deve criar um novo jogo com estas mes
 ![CODING_DEFINICAO_NECESSIDADE_2](https://user-images.githubusercontent.com/43553717/160299173-00ed0cb1-4156-492e-8e59-bf98cd216dd0.jpg)
 
 Resumidamente, esta função é responsável por inicializar um novo jogo (indiferente de ser a primeira vez do jogador) e **atribui às propriedades de inicialização definidas na interface e tratadas pelo programa (como é visto nas três primeiras linhas da função) os seus devidos valores**, isso porque essa função é dinâmica e não é chamada somente na inicialização e sim em varios outros momentos no decorrer do programa. Logo após uma nova palavra é gerada através do método ``gerarPalavra()`` e **é atribuida a palavra atual através de uma busca e escolha aleatória em uma das listas de palavras (separadas pelos temas disponíveis) salvos em arquivos de textos diferentes** conforme mostrado na imagem abaixo.
+
 ![CODING_DEFINICAO_NECESSIDADE_4](https://user-images.githubusercontent.com/43553717/159729317-7ba6e375-00a6-4374-bda5-6918d2cf7838.jpg)
+
 Repare que, ao atribuir o nome do arquivo ao identificador de recurso (URI), é chamado a função de tratamento ``handleTemaURI(string temaAtual)``, isso pois **o tema da escolha do jogador pode ter acentos** (como em PROFISSÃO) e, por boa prática _- e por não ser um completo lunático -_, **os arquivos salvos tem a formatação de texto universal**, isto é, **não possuí acentos em sua composição ou espaços em branco ou caracteres especiais (com exceção de "-" ou "_")** e esse essa função trata exatamente isso.
 Outra coisa importante de se mencionar é que de acordo com a lógica da função, se o jogador acertar a palavra e continuar o jogo, **as chances da nova palavra ser repetida diminuiem em 100%** até que ele tenha completado todas as palavras da lista.
 
