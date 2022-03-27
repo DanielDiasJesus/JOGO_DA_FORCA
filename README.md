@@ -126,7 +126,10 @@ Primeiramente, temos um laço de repetição que, talvez, seja a parte mais impo
 
 Eis o problema: nós, brasileiros, utilizamos um sistema de codificação um pouco diferente do padrão universal (americano) em nosso sitema de comunicação escrita, isto é, nossas palavras são um pouco diferentes das do restante do mundo _-- assim como algumas outras linguas como chinês ou árabe, mas não estamos interessados nelas --_ e por isso devemos nos atentar à estas palavras e trocar à sua correspondente letra. 
 
-Por exemplo a palavra **MACARRÃO** ela posui um **A** com uma acento til( **~**) gerando a letra **Ã**. E isso é um prolema, pois na nossa interface não colocamos opções de acentuação para o usuário escolher. Então como resolver este problema? É aí que o método ``verificarCodificacao()`` entra. 
+Por exemplo a palavra **MACARRÃO** ela posui um **A** com uma acento til( **~**) gerando a letra **Ã**. 
+
+E isso é um prolema, pois na nossa interface não colocamos opções de acentuação para o usuário escolher. Então como resolver este problema? É aí que o método ``verificarCodificacao()`` entra. 
+
 Ele é um método que troca a letra com acentuação pela sua respectiva letra base sem acento... Os caracteres **[Ã, Á, À, Â, ...]** por exemplo, são trocados pelo **A**, assim como os caracteres **[É, È, Ê, ...]** são trocados pelo **E**. Assim como é mostrado na descrição da função abaixo.
 
 ![CODING_PROCESSAMENTO_DE_DADOS_3](https://user-images.githubusercontent.com/43553717/160292968-c69c6fb8-9fa8-42e1-84ec-2d43a3752c09.jpg)
