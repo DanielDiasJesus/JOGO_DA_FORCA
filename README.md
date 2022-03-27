@@ -126,19 +126,23 @@ Primeiramente, temos um laço de repetição que, talvez, seja a parte mais impo
 
 Eis o problema: nós, brasileiros, utilizamos um sistema de codificação um pouco diferente do padrão universal (americano) em nosso sitema de comunicação escrita, isto é, nossas palavras são um pouco diferentes das do restante do mundo _-- assim como algumas outras linguas como chinês ou árabe, mas não estamos interessados nelas --_ e por isso devemos nos atentar à estas palavras e trocar à sua correspondente letra. 
 
-Por exemplo a palavra **MACARRÃO** ela posui um **A** com uma acento til( **~**) gerando a letra **Ã**. 
+Por exemplo a palavra **MACARRÃO** ela posui um **A** com uma acento til(**~**) gerando a letra **Ã**. 
+
 E isso é um prolema, pois na nossa interface não colocamos opções de acentuação para o usuário escolher. Então como resolver este problema? 
 
 É aí que o método ``verificarCodificacao()`` entra. 
 
-Ele é um método que troca a letra com acentuação pela sua respectiva letra base sem acento... Os caracteres **[Ã, Á, À, Â, ...]** por exemplo, são trocados pelo **A**, assim como os caracteres **[É, È, Ê, ...]** são trocados pelo **E**. Assim como é mostrado na descrição da função abaixo.
+Ele é um método que troca a letra com acentuação pela sua respectiva letra base sem acento... Os caracteres **[Ã, Á, À, Â, ...]** por exemplo, são trocados pelo **A**, assim como os caracteres **[É, È, Ê, ...]** são trocados pelo **E**. 
+Assim como é mostrado na descrição da função abaixo.
 
 ![CODING_PROCESSAMENTO_DE_DADOS_3](https://user-images.githubusercontent.com/43553717/160292968-c69c6fb8-9fa8-42e1-84ec-2d43a3752c09.jpg)
 
 Pronto, até aqui temos tudo em ordem no controle da acentuação 🙂
 
 Agora, voltando com o método ``manipularEscolha()`` a letra retornada do processamento da função ``verificarCodificacao()`` é passada para a verificação na linha imediatamente abaixo comparando com a letra escolhida pelo jogador vinda do parametro ``control`` e, caso a verificação for verdadeira, **é atribuido verdadeiro à variavel local ``acertou``, os acertos são acrescidos e a função ``mostrarLetra()`` é chamada**. 
+
 Essa função é bem simples, **ela percorre o contexto onde estão as ``Labels`` geradas anteriormente em ``novoJogo()`` e acresce um index toda vez que ele for menor que a posição passada no parâmetro do método (primeiro parâmetro)**, _- podendo assim identificar qual a pocisão da palavra atual corresponde a letra que o jogador acertou -_ e, quando o index corresponder ao parâmetro da posição **a ``Label`` correspondente dentro deste contexto receberá o texto equivalente ao caracter da posição atual que o jogador acertou presente na variável ``palavraAtual`` (segundo parâmetro)**.
+
 E, voltando na primeira verificação do laço de repetição, ele não pode parar assim que achar a primeira letra pois se existir mais de uma correspondência de letra para a palavra atual, **TODAS ELAS DEVEM SER TROCADAS** _- como é descrito nas regras do jogo. Viu como é bom definir tudo antes de colocar a mão na massa? Fica a dica_ 😉 -  como no exemplo da palavra **"MACARRÃO"**.
 
 No momento atual, ela está correspondendo somente à **"_ _ _ _ _ _ _ _"**.
@@ -149,10 +153,11 @@ Este laço de repetição deve iterar cada posição da palavra atual **até o f
 Deixando o jogo com a solução parcial: **"_ A _ A _ _ Ã _"**.
 
 Prosseguindo com a função logo abaixo do método ``mostrarLetra()`` temos uma verificação para desativar o botão da dica caso a quantidade de acertos for maior ou igual a 3 (como solicitado na regra 5) _- abordaremos a questão da dica mais tarde -_ e logo abaixo, temos a segunda verificação que trata caso o jogador **não tenha acertado nenhuma letra e a posição de iteração do laço de repetição estiver no final da palavra** em outras palavras, o jogador infelizmente errou ao escolher a letra pois ela não está presente em nossa solução parcial 😪.
+
 É chamado então o método ``errou()`` que **acresce uma tentativa** pois, conforme solicitado na regras do jogo, o jogador só explicitamente perdeu uma tentativa quando a letra escolhida não está presente na resolução da palavra e também **muda a sprite da forca**, desenhando mais um pedaço do corpo do boneco a ser cruelmente enforcado.
 
 E, finalizando o método ``manipularEscolha()``, temos duas verificações finais.
-A primeira verificado, através da função ``ganhou()``, é chamada para identificar se a **quantidade de acertos da palavra atual é igual ao tamanho real da palavra atual** _- desta forma, nós conseguimos saber se ele acertou todas as letras presente na palavra -_ e caso seja verdadeiro, a quantidade de pontos é acrescida (conforme solicitados na regra 2) e um novo jogo é chamado através da função ``novoJogo()`` da qual já trabalhamos nos tópicos anteriores. Esta função é chamada sempre que o jogo voltar ao estado inicial sendo elas **na primeira vez que o programa for inicializado**, **quando acertar uma palavra** (conforme solicidado na regra 1) ou **quando o jogador perder o jogo porém deseja jogar novamente** (conforme solicitados na regra 3).
+A primeira verificado, através da função ``ganhou()``, é chamada para identificar se a **quantidade de acertos da palavra atual é igual ao tamanho real da palavra atual** _- desta forma, nós conseguimos saber se ele acertou todas as letras presente na palavra -_ e caso seja verdadeiro, a quantidade de pontos é acrescida (conforme solicitados na regra 2) e um novo jogo é chamado através da função ``novoJogo()`` da qual já trabalhamos nos tópicos anteriores. Essa função é chamada sempre que o jogo voltar ao estado inicial sendo elas **na primeira vez que o programa for inicializado**, **quando acertar uma palavra** (conforme solicidado na regra 1) ou **quando o jogador perder o jogo porém deseja jogar novamente** (conforme solicitados na regra 3).
 
 E ultima verificação é chamada para identificar caso o jogador **perdeu o jogo** através da função ``perdeu()`` que verifica **se o numero de tentativas do jogador for igual ao máximo de tentativas permitidas pelo jogo** e caso seja verdadeiro, a função ``fimDeJogo()`` é chamado. A função ``fimDeJogo()`` abre uma **janela personalizada** _- semelhante a de esolha de tema, porém menor e mais controlada quanto à posição -_ é mostrada ao jogador questionando se ele deseja jogar novamente juntamente com a quantidade de pontos que ele adquiriu ao decorrer dos jogos. Confome é visto na imagem abaixo.
 
